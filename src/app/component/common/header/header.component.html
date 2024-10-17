@@ -1,0 +1,52 @@
+<!--<nav class="navbar">-->
+<!--  <div class="navbar-brand">-->
+<!--    <a href="/home">Dress</a>-->
+<!--  </div>-->
+<!--  <ul class="navbar-ul">-->
+<!--    <li><a href="/home" class="active">Home</a></li>-->
+<!--    <li><a href="/rooms" class="active">Rooms</a></li>-->
+<!--    <li><a href="/find-booking" class="active">Find my Booking</a></li>-->
+
+<!--    @if (isUser) {-->
+<!--      <li><a href="/profile" class="active">Profile</a></li>-->
+<!--    } @else if (isAdmin) {-->
+<!--      <li><a href="/admin" class="active">Admin</a></li>-->
+<!--    }-->
+
+
+<!--    <li *ngIf="!isAuthenticated"><a href="/login" class="active">Login</a></li>-->
+<!--    &lt;!&ndash;    <li *ngIf="!isAuthenticated"><a href="/register" class="active">Register</a></li>&ndash;&gt;-->
+
+<!--    <li *ngIf="isAuthenticated" (click)="handleLogout()">Logout</li>-->
+<!--  </ul>-->
+<!--</nav>-->
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Rental Dress</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/dress">Dress</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/books">Find my Booking</a>
+        </li>
+        @if (isUser) {
+          <li class="nav-item"><a href="/profile" class="nav-link">Profile</a></li>
+        } @else if (isAdmin) {
+          <li class="nav-item"><a href="/admin" class="nav-link">Admin</a></li>
+        }
+        <li *ngIf="!isAuthenticated" class="nav-item"><a href="/login" class="nav-link">Login</a></li>
+        <!--    <li *ngIf="!isAuthenticated"><a href="/register" class="active">Register</a></li>-->
+        <li *ngIf="isAuthenticated" (click)="handleLogout()" class="nav-link">Logout</li>
+      </ul>
+    </div>
+  </div>
+</nav>

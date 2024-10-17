@@ -1,0 +1,24 @@
+<section class="dress-results">
+  <div *ngIf="dressSearchResults && dressSearchResults.length > 0" class="dress-list">
+    <div *ngFor="let dress of dressSearchResults" class="dress-list-item">
+      <img class="dress-list-item-image" ngSrc="dress.dressPhotoUrl" [alt]="dress.dressSize" fill/>
+      <div class="dress-details">
+        <h3>{{ dress.dressType }}</h3>
+        <p>Price: ${{ dress.dressPrice }} / night</p>
+        <p>Description: {{ dress.dressDescription }}</p>
+      </div>
+
+      <div class="book-now-div">
+        @if (isAdmin()) {
+          <button class="edit-dress-button" (click)="navigateToDress(dress.id, true)">
+            Edit Dress
+          </button>
+        } @else if (!isAdmin()) {
+          <button class="book-now-button" (click)="navigateToDress(dress.id, false)">
+            View/Book Now
+          </button>
+        }
+      </div>
+    </div>
+  </div>
+</section>
