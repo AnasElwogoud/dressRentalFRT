@@ -1,0 +1,12 @@
+<div class="pagination-nav">
+  <ul class="pagination-ul">
+    <li *ngFor="let number of pageNumbers" class="pagination-li">
+      <button
+        (click)="onPageClick(number)"
+        [ngClass]="{'current-page': currentPage === number}"
+        class="pagination-button">
+        {{ number }}
+      </button>
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,41 @@
+/*FIND BOOKING PAGE */
+.find-booking-page {
+  max-width: 50%;
+  margin: 10px auto 60px auto;
+  padding: 20px;
+}
+
+
+.search-container input[type="text"] {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-right: 10px;
+  width: 300px;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #007F86;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: rgb(34, 80, 128);
+}
+
+.booking-details {
+  margin-top: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px;
+}
+
+p {
+  margin: 5px 0;
+}

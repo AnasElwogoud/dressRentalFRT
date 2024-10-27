@@ -1,0 +1,61 @@
+<div class="card flex justify-content-center gap-2">
+  <p-toast/>
+</div>
+
+<h4 class="text-center mt-3">Dress Details</h4>
+<div class="d-flex justify-content-center align-content-center my-3">
+  @if (dressDetails != null) {
+    <div class="card" style="width: 18rem;">
+      <img [src]="'data:image/png;base64,'+dressDetails.dressPhotoUrl" alt="{{dressDetails?.dressPhotoUrl}}"
+           class="card-img-top">
+      <div class="card-body">
+        <h5 class="card-title">Size : {{ dressDetails?.size }}</h5>
+        <h6 class="card-title">Price: ${{ dressDetails?.price }}</h6>
+        <p class="card-text">{{ dressDetails?.description }}</p>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item text-center fw-bold">Existing Booking Details</li>
+        <li class="list-group-item" *ngFor="let booking of dressDetails.bookings; let i = index">
+          <span class="booking-number">Booking {{ i + 1 }} :</span>
+          Rental:<span class="fw-bold"> {{ booking.rentalDate | date:'dd/MM/yyyy' }}</span>
+          Return:<span class="fw-bold"> {{ booking.returnDate | date:'dd/MM/yyyy' }}</span></li>
+      </ul>
+      <div class="card-body">
+        <div class="booking-info">
+          <div class=" d-flex justify-content-center align-content-center">
+            <button class="btn btn-info me-2" (click)="showDatePicker=true">Book Now</button>
+            <button class="btn btn-danger" (click)="showDatePicker=false">Go Back</button>
+          </div>
+          <!-- Date Picker Section -->
+          <div *ngIf="showDatePicker" class="date-picker-container">
+            <!-- Check-In Date Picker -->
+            <input
+              class="detail-search-field"
+              type="date"
+              [(ngModel)]="rentalDate"
+              placeholder="Rental Date"
+            />
+
+            <!-- Check-Out Date Picker -->
+            <input
+              class="detail-search-field"
+              type="date"
+              [(ngModel)]="returnDate"
+              [min]="rentalDate"
+              placeholder="return Date"
+            />
+            <button class="confirm-booking" (click)="handleConfirmBooking()">Confirm Booking</button>
+          </div>
+        </div>
+
+        <!-- Total Price Section -->
+        <div *ngIf="totalPrice > 0" class="total-price">
+          <p>Total Price: ${{ totalPrice }}</p>
+          <!--    <button (click)="acceptBooking()" class="accept-booking">Accept Booking</button>-->
+          <button (click)="acceptBooking()" type="button" class="btn btn-primary">Accept Booking</button>
+        </div>
+      </div>
+    </div>
+  }
+</div>
+

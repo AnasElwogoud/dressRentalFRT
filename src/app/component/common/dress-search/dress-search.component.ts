@@ -1,6 +1,6 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {CommonModule} from '@angular/common';
 import {ApiService} from "../../../service/api.service";
 
 @Component({
@@ -20,17 +20,18 @@ export class DressSearchComponent implements OnInit {
   error: string = '';
   @Output() searchResult = new EventEmitter<any[]>();
 
-  constructor(private apiService: ApiService) {}
-
-  ngOnInit(): void {
-    this.fetchRoomTypes();
+  constructor(private apiService: ApiService) {
   }
 
-  /** Fetch room types from API service */
-  fetchRoomTypes(): void {
+  ngOnInit(): void {
+    this.fetchDressSizes();
+  }
+
+  /** Fetch dress Sizes from API service */
+  fetchDressSizes(): void {
     this.apiService.getDressSizes().subscribe(
-      (types) => this.dressSizes = types,
-      (error) => console.error('Error fetching room types:', error.message)
+      (sizes) => this.dressSizes = sizes,
+      (error) => console.error('Error fetching dress types:', error.message)
     );
   }
 
@@ -40,23 +41,37 @@ export class DressSearchComponent implements OnInit {
     setTimeout(() => this.error = '', timeout);
   }
 
-  /** Search available rooms based on criteria */
+  /** Search available dresses based on criteria */
   handleInternalSearch(): void {
     if (!this.startDate || !this.endDate || !this.dressSize) {
       this.showError('Please select all fields');
       return;
     }
 
-    const formattedStartDate = this.startDate ? this.startDate.toISOString().split('T')[0] : null;
-    const formattedEndDate = this.endDate ? this.endDate.toISOString().split('T')[0] : null;
+    let formattedStartDate = null;
+
+    if (this.startDate) {
+      const dateObj = new Date(this.startDate); // Ensures it's a Date object
+      if (!isNaN(dateObj.getTime())) { // Check if it's a valid date
+        formattedStartDate = dateObj.toISOString().split('T')[0];
+      }
+    }
+
+    let formattedEndDate = null;
+    if (this.endDate) {
+      const dateObj = new Date(this.endDate); // Ensures it's a Date object
+      if (!isNaN(dateObj.getTime())) { // Check if it's a valid date
+        formattedEndDate = dateObj.toISOString().split('T')[0];
+      }
+    }
 
     this.apiService.getAvailableDressByDateAndSize(formattedStartDate, formattedEndDate, this.dressSize).subscribe(
       (response: any) => {
         if (response.statusCode === 200) {
-          if (response.roomList.length === 0) {
-            this.showError('Dress not currently available for this date range on the selected room type.');
+          if (response.dressList.length === 0) {
+            this.showError('Dress not currently available for this date range on the selected dress size.');
           } else {
-            this.handleSearchResult.emit(response.roomList);
+            this.handleSearchResult.emit(response.dressList);
             this.error = '';
           }
         }

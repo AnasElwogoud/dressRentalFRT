@@ -1,0 +1,40 @@
+<div class="profile-page">
+  <!-- Display user name if available -->
+  <h2 *ngIf="user">Welcome, {{ user.name }}</h2>
+
+  <!-- Profile Actions -->
+  <div class="profile-actions">
+    <button class="edit-profile-button" (click)="handleEditProfile()">Edit Profile</button>
+    <button class="logout-button" (click)="handleLogout()">Logout</button>
+  </div>
+
+  <!-- Error Message -->
+  <p *ngIf="error" class="error-message">{{ error }}</p>
+
+  <!-- User Profile Details -->
+  <div *ngIf="user" class="profile-details">
+    <h3>My Profile Details</h3>
+    <p><strong>Email:</strong> {{ user.email }}</p>
+    <p><strong>Phone Number:</strong> {{ user.phoneNumber }}</p>
+  </div>
+
+  <!-- Booking History -->
+  <div class="bookings-section">
+    <h3>My Booking History</h3>
+    <div class="booking-list">
+      <ng-container *ngIf="user && user.bookings?.length > 0; else noBookings">
+        <div *ngFor="let booking of user.bookings" class="booking-item">
+          <p><strong>Booking Code:</strong> {{ booking.bookingConfirmationCode }}</p>
+          <p><strong>Check-in Date:</strong> {{ booking.rentalDate }}</p>
+          <p><strong>Check-out Date:</strong> {{ booking.returnData }}</p>
+          <p><strong>Room Type:</strong> {{ booking.dress.dressSize }}</p>
+          <img [src]="booking.dress.dressPhotoUrl" alt="Dress" class="dress-photo"/>
+        </div>
+      </ng-container>
+      <!-- Fallback if no bookings are found -->
+      <ng-template #noBookings>
+        <p>No bookings found.</p>
+      </ng-template>
+    </div>
+  </div>
+</div>

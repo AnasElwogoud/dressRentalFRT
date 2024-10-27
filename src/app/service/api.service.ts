@@ -1,18 +1,25 @@
-import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Observable} from "rxjs";
+import {inject, Injectable} from '@angular/core';
+import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
+import {catchError, Observable, throwError} from "rxjs";
+import {Dress} from "./dress";
+import {DecodeJWTService} from "./decode-jwt.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
   private BASE_URL = 'http://localhost:7788';
+  private jwtDecodeService = inject(DecodeJWTService);
+  decodedToken: any;
 
   constructor(private http: HttpClient) {
   }
 
   private getHeader(): HttpHeaders {
-    const token = localStorage.getItem('token');
+    let token: string | null = localStorage.getItem('token');
+    if (token != null) {
+      this.decodedToken = this.jwtDecodeService.decodeToken(token)
+    }
     return new HttpHeaders({
       Authorization: `Bearer ${token}`,
       'Content-Type': 'application/json'
@@ -60,7 +67,7 @@ export class ApiService {
   }
 
   getAvailableDressByDateAndSize(rentalDate: string | null, returnDate: string | null, dressSize: string): Observable<any> {
-    return this.http.get(`${this.BASE_URL}/dress/getAvailableDressByDateAndSize`);
+    return this.http.get(`${this.BASE_URL}/dress/getAvailableDressByDateAndSize?rentalDate=${rentalDate}&returnDate=${returnDate}&dressSize=${dressSize}`);
   }
 
   getDressSizes(): Observable<any> {
@@ -68,6 +75,7 @@ export class ApiService {
   }
 
   getAllDress(): Observable<any> {
+    // @ts-ignore
     return this.http.get(`${this.BASE_URL}/dress/all`);
   }
 
@@ -85,7 +93,7 @@ export class ApiService {
   }
 
   // BOOKINGS
-  bookDress(dressId: string, userId: string, booking: any): Observable<any> {
+  bookDress(dressId: any, userId: any, booking: any): Observable<any> {
     return this.http.post(`${this.BASE_URL}/bookings/bookDress/${dressId}/${userId}`, booking, {headers: this.getHeader()});
   }
 

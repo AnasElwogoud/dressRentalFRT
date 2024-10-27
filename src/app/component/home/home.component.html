@@ -2,8 +2,7 @@
   <!-- HEADER / BANNER DRESS SECTION -->
   <section>
     <header class="header-banner">
-      <img ngSrc="/assets/images/hotel.webp" alt="Phegon Hotel" class="header-image" height="496"
-           width="1600"/>
+      <img ngSrc="/assets/images/hotel.webp" alt="Dress Rental" class="header-image" fill/>
       <div class="overlay"></div>
       <div class="animated-texts overlay-content">
         <h1>
@@ -16,18 +15,18 @@
   </section>
 
   <!-- SEARCH/FIND AVAILABLE DRESS SECTION -->
-    <app-dress-search (searchResult)="handleSearchResult($event)"></app-dress-search>
-    <app-dress-result [dressSearchResults]="dressSearchResults"></app-dress-result>
+  <app-dress-search (searchResult)="handleSearchResult($event)"></app-dress-search>
+  <app-dress-result [dressSearchResults]="dressSearchResults"></app-dress-result>
 
-  <h4><a class="view-dresses-home" routerLink="/dress">All Dresses</a></h4>
+  <h4><a class="view-dresses-home" routerLink="/dresses">All Dresses</a></h4>
 
   <h2 class="home-services">Services at <span class="phegon-color">Dress Rental</span></h2>
 
   <!-- SERVICES SECTION -->
   <section class="service-section">
     <div class="service-card">
-      <img ngSrc="/assets/images/ac.png" alt="Air Conditioning" height="100"
-           width="50"/>
+      <img ngSrc="/assets/images/ac.png" alt="Air Conditioning" height="50"
+           width="50" class="rounded mt-4"/>
       <div class="service-details">
         <h3 class="service-title">Air Conditioning</h3>
         <p class="service-description">Stay cool and comfortable throughout your stay with our individually controlled
@@ -35,8 +34,8 @@
       </div>
     </div>
     <div class="service-card">
-      <img ngSrc="/assets/images/mini-bar.png" alt="Mini Bar" height="100"
-           width="50"/>
+      <img ngSrc="/assets/images/mini-bar.png" alt="Mini Bar" height="50"
+           width="50" class="rounded mt-4"/>
       <div class="service-details">
         <h3 class="service-title">Mini Bar</h3>
         <p class="service-description">Enjoy a convenient selection of beverages and snacks stocked in your room's mini
@@ -44,8 +43,8 @@
       </div>
     </div>
     <div class="service-card">
-      <img ngSrc="/assets/images/parking.png" alt="Parking"  height="100"
-           width="50"/>
+      <img ngSrc="/assets/images/parking.png" alt="Parking" height="50"
+           width="50" class="rounded-circle mt-3"/>
       <div class="service-details">
         <h3 class="service-title">Parking</h3>
         <p class="service-description">We offer on-site parking for your convenience. Please inquire about valet parking
@@ -53,8 +52,8 @@
       </div>
     </div>
     <div class="service-card">
-      <img ngSrc="/assets/images/wifi.png" alt="WiFi" height="100"
-           width="50"/>
+      <img ngSrc="/assets/images/wifi.png" alt="WiFi" height="50"
+           width="50" class="rounded mt-4"/>
       <div class="service-details">
         <h3 class="service-title">WiFi</h3>
         <p class="service-description">Stay connected throughout your stay with complimentary high-speed Wi-Fi access

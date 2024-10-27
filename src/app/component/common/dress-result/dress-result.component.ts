@@ -26,9 +26,9 @@ export class DressResultComponent {
 
   navigateToDress(dressId: number, isAdmin: boolean): void {
     if (isAdmin) {
-      this.router.navigate([`/admin/edit-room/${dressId}`]).then(r => console.log(r));
+      this.router.navigate([`/admin/edit-dress/${dressId}`]);
     } else {
-      this.router.navigate([`/dress-details-book/${dressId}`]).then(r => console.log(r));
+      this.router.navigate([`/dressDetails/${dressId}`]);
     }
   }
 }

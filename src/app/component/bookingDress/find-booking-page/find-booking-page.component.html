@@ -1,0 +1,47 @@
+<div class="find-booking-page">
+  <h2>Find Booking</h2>
+
+  <!-- Search Container -->
+  <div class="search-container">
+    <input
+      required
+      type="text"
+      placeholder="Enter your booking confirmation code"
+      [(ngModel)]="confirmationCode"
+    />
+    <button (click)="handleSearch()">Find</button>
+  </div>
+
+  <!-- Error Message -->
+  <p *ngIf="error" style="color: red;">{{ error }}</p>
+
+  <!-- Booking Details -->
+  <div *ngIf="bookingDetails" class="booking-details">
+    <h3>Booking Details</h3>
+    <p>Confirmation Code: {{ bookingDetails.bookingConfirmationCode }}</p>
+    <p>Rental Date: {{ bookingDetails.rentalDate }}</p>
+    <p>Return Date: {{ bookingDetails.returnDate }}</p>
+
+    <br/>
+    <hr/>
+    <br/>
+
+    <h3>Booker Details</h3>
+    <div>
+      <p>Name: {{ bookingDetails.user.name }}</p>
+      <p>Email: {{ bookingDetails.user.email }}</p>
+      <p>Phone Number: {{ bookingDetails.user.phoneNumber }}</p>
+    </div>
+
+    <br/>
+    <hr/>
+    <br/>
+
+    <h3>Dress Details</h3>
+    <div>
+      <p>Dress Size: {{ bookingDetails.dress.dressSize }}</p>
+      <img class="dress-list-item-image" height="280" width="178"
+           [src]="'data:image/png;base64,'+bookingDetails.data.dressPhotoUrl" alt="{{bookingDetails.data.dressPhotoUrl}}"/>
+    </div>
+  </div>
+</div>

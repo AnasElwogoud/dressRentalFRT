@@ -1,10 +1,14 @@
 <section class="dress-results">
   <div *ngIf="dressSearchResults && dressSearchResults.length > 0" class="dress-list">
     <div *ngFor="let dress of dressSearchResults" class="dress-list-item">
-      <img class="dress-list-item-image" ngSrc="dress.dressPhotoUrl" [alt]="dress.dressSize" fill/>
+      <!--      <img class="dress-list-item-image" ngSrc="E:\Learning\Projects\dressRental\dressRental_FRT\src\assets\images\1.jfif" alt="test" height="280" width="178"/>-->
+
+      <img class="dress-list-item-image"  height="280" width="178"
+           [src]="'data:image/png;base64,'+dress.dressPhotoUrl" alt="{{dress.dressPhotoUrl}}"/>
+
       <div class="dress-details">
-        <h3>{{ dress.dressType }}</h3>
-        <p>Price: ${{ dress.dressPrice }} / night</p>
+        <h3>{{ dress.size }}</h3>
+        <p>Price: ${{ dress.price }} / night</p>
         <p>Description: {{ dress.dressDescription }}</p>
       </div>
 
