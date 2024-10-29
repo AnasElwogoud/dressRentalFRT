@@ -1,0 +1,48 @@
+<div class="edit-dress-container">
+  <h2>Add New Dress</h2>
+<!--  <div *ngIf="error" class="error-message">{{ error }}</div>-->
+<!--  <div *ngIf="success" class="success-message">{{ success }}</div>-->
+
+  <form (ngSubmit)="addDress()">
+    <div class="mb-3 text-center">
+      <img *ngIf="preview" [src]="preview" alt="Dress Preview" class="dress-photo-preview mb-3"/>
+      <input class="form-control" type="file" name="dressPhoto" (change)="handleFileChange($event)" id="formFile">
+    </div>
+
+    <div class="form-group">
+      <label>Dress Size</label>
+      <select class="form-select form-select-sm" aria-label=".form-select-sm example"
+              [(ngModel)]="dressDetails.dressSize" name="dressSize" (change)="handleDressSizeChange($event)">
+        <option selected value="">Select a dress size</option>
+        <option *ngFor="let size of dressSizes" [value]="size">{{ size }}</option>
+        <option value="new">Other (please specify)</option>
+      </select>
+
+      <input *ngIf="newDressSize" type="text" name="newDressSize" placeholder="Enter new dress size"
+             [(ngModel)]="dressDetails.dressSize" class="mt-2"/>
+    </div>
+    <div class="row my-3">
+      <label for="inputPrice" class="col-sm-3 col-form-label">Dress Price</label>
+      <div class="col-sm-9">
+        <input type="number" class="form-control" id="inputPrice" name="dressPrice"
+               [(ngModel)]="dressDetails.dressPrice"
+               required>
+      </div>
+    </div>
+
+    <div class="row my-3">
+      <label for="inputDescription" class="col-sm-3 col-form-label">Dress Description</label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control" id="inputDescription" name="dressDescription"
+               [(ngModel)]="dressDetails.dressDescription"
+               required>
+      </div>
+    </div>
+    <div class="row d-flex justify-content-center align-content-center">
+      <button type="submit" class="update-button">Add Dress</button>
+    </div>
+  </form>
+</div>
+<div class="card flex justify-content-center gap-2">
+  <p-toast/>
+</div>

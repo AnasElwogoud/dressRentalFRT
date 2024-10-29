@@ -1,0 +1,35 @@
+<div class="find-booking-page">
+  <h2>Booking Detail</h2>
+  <div *ngIf="bookingDetails" class="booking-details mx-auto">
+    <h4 class="text-black-50">Booking Details</h4>
+    <p>Confirmation Code: {{ bookingDetails.bookingConfirmationCode }}</p>
+    <p>Rental Date: {{ bookingDetails.rentalDate }}</p>
+    <p>Return Date: {{ bookingDetails.returnDate }}</p>
+    <hr/>
+
+    <h4 class="text-black-50">Booker Details</h4>
+    <p>Name: {{ bookingDetails.user.name }}</p>
+    <p>Email: {{ bookingDetails.user.email }}</p>
+    <p>Phone Number: {{ bookingDetails.user.phoneNumber }}</p>
+
+    <hr/>
+
+    <h4 class="text-black-50">Dress Details</h4>
+    <p>Dress Size: {{ bookingDetails.dress.size }}</p>
+    <p>Dress Price: ${{ bookingDetails.dress.price }}</p>
+    <p>Dress Description: {{ bookingDetails.dress.description }}</p>
+    <img
+      *ngIf="bookingDetails.dress.dressPhotoUrl"
+      [src]="'data:image/png;base64,'+bookingDetails.dress.dressPhotoUrl"
+      alt="Dress"
+      class="dress-photo"/>
+
+    <button class="archive-booking mt-3" (click)="achieveBooking(bookingDetails.id)">
+      Archive Booking
+    </button>
+  </div>
+</div>
+
+<div class="card flex justify-content-center gap-2">
+  <p-toast/>
+</div>

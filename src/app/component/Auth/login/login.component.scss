@@ -1,15 +1,69 @@
-.error-message {
-  text-align: center;
-  color: #b10505;
-  font-weight: 800;
-  font-size: 20px;
+/**REGISTRATION PAGE START HERE STYLING*/
 
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
 }
 
-.success-message {
-  text-align: center;
-  color: #051fb1;
-  font-weight: 800;
-  font-size: 20px;
-
+.form-group input {
+  width: 90%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
+
+button[type="submit"] {
+  width: 95%;
+  padding: 12px;
+  background-color: #007F86;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-weight: 800;
+  border-radius: 10px;
+}
+
+button[type="submit"]:hover {
+  background-color: rgb(34, 80, 128)
+}
+
+
+/**REGISTRATION PAGE END HERE*/
+
+.auth-container {
+  max-width: 400px;
+  padding: 20px;
+  border: 0.5px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+  margin: 20px auto 50px auto;
+}
+
+.auth-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #007F86;
+}
+
+.register-link {
+  margin-top: 20px;
+  font-size: 13px;
+}
+
+.register-link a {
+  color: #007F86;
+  text-decoration: none;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+}
+
+/**LOGIN CSS END HERE*/

@@ -1,0 +1,33 @@
+<div class="bookings-container">
+  <h2>All Bookings</h2>
+
+  <div class="search-div">
+    <label>Filter by Booking Number:</label>
+    <input
+      type="text"
+      [(ngModel)]="searchTerm"
+      (input)="handleSearchChange($event)"
+      placeholder="Enter booking number"
+    />
+  </div>
+
+  <div class="booking-results">
+    <div *ngFor="let booking of currentBookings" class="booking-result-item">
+      <p><strong>Booking Code:</strong> {{ booking.bookingConfirmationCode }}</p>
+      <p><strong>Rental Date:</strong> {{ booking.rentalDate }}</p>
+      <p><strong>Return Date:</strong> {{ booking.returnDate }}</p>
+      <button
+        class="edit-dress-button"
+        (click)="navigateToEditBooking(booking.bookingConfirmationCode)">
+        Manage Booking
+      </button>
+    </div>
+  </div>
+
+  <app-pagination
+    [dressesPerPage]="bookingsPerPage"
+    [totalDresses]="filteredBookings.length"
+    [currentPage]="currentPage"
+    (paginate)="paginate($event)">
+  </app-pagination>
+</div>

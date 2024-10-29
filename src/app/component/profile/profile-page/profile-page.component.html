@@ -25,9 +25,9 @@
       <ng-container *ngIf="user && user.bookings?.length > 0; else noBookings">
         <div *ngFor="let booking of user.bookings" class="booking-item">
           <p><strong>Booking Code:</strong> {{ booking.bookingConfirmationCode }}</p>
-          <p><strong>Check-in Date:</strong> {{ booking.rentalDate }}</p>
-          <p><strong>Check-out Date:</strong> {{ booking.returnData }}</p>
-          <p><strong>Room Type:</strong> {{ booking.dress.dressSize }}</p>
+          <p><strong>Rental Date:</strong> {{ booking.rentalDate }}</p>
+          <p><strong>Return Date:</strong> {{ booking.returnData }}</p>
+          <p><strong>Dress Size:</strong> {{ booking.dress.dressSize }}</p>
           <img [src]="booking.dress.dressPhotoUrl" alt="Dress" class="dress-photo"/>
         </div>
       </ng-container>

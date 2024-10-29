@@ -1,0 +1,29 @@
+<div class="text-center container mt-3">
+  <h2>All Dresses</h2>
+
+  <div class="all-dress-filter-div row" style="display: flex;align-items: center;">
+    <div class="col-9 m-0 p-0 text-start">
+      <label class="pe-2">Filter by Dress Size:</label>
+      <select [(ngModel)]="selectedDressSize" (change)="handleDressSizeChange($event)">
+        <option value="">All</option>
+        <option *ngFor="let size of dressSizes" [value]="size">{{ size }}</option>
+      </select>
+    </div>
+    <button class="btn btn-success col-2" (click)="navigate()">
+      Add Dress
+    </button>
+  </div>
+
+  <!-- Dress Results Component -->
+  <app-dress-result [dressSearchResults]="currentDresses"></app-dress-result>
+
+  <!-- Pagination Component -->
+  <app-pagination
+    [dressesPerPage]="dressesPerPage"
+    [totalDresses]="filteredDress.length"
+    [currentPage]="currentPage"
+    (paginate)="paginate($event)">
+  </app-pagination>
+</div>
+
+

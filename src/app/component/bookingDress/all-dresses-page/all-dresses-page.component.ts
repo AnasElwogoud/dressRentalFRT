@@ -85,12 +85,12 @@ export class AllDressesPageComponent implements OnInit {
 
   // Filter dresses by selected type
   filterDresses(size: string) {
-    if (size === '') {
-      this.filteredDresses = this.dresses;
-    } else {
-      // @ts-ignore
-      this.filteredDresses = this.dresses.filter(dress => dress.size === size);
-    }
+    this.filteredDresses = this.dresses.filter(dress => dress.size === size);
+    // if (size === '') {
+    //   this.filteredDresses = this.dresses;
+    // } else {
+    //   // @ts-ignore
+    // }
     this.currentPage = 1; // Reset to first page
   }
 

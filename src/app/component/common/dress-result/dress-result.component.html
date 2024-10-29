@@ -3,13 +3,13 @@
     <div *ngFor="let dress of dressSearchResults" class="dress-list-item">
       <!--      <img class="dress-list-item-image" ngSrc="E:\Learning\Projects\dressRental\dressRental_FRT\src\assets\images\1.jfif" alt="test" height="280" width="178"/>-->
 
-      <img class="dress-list-item-image"  height="280" width="178"
+      <img class="dress-list-item-image" height="280" width="178"
            [src]="'data:image/png;base64,'+dress.dressPhotoUrl" alt="{{dress.dressPhotoUrl}}"/>
 
       <div class="dress-details">
         <h3>{{ dress.size }}</h3>
         <p>Price: ${{ dress.price }} / night</p>
-        <p>Description: {{ dress.dressDescription }}</p>
+        <p>Description: {{ dress.description }}</p>
       </div>
 
       <div class="book-now-div">

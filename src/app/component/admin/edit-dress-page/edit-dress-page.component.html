@@ -1,0 +1,43 @@
+<div class="edit-dress-container">
+  <h2>Edit Dress</h2>
+  <div class="edit-dress-form">
+    <div class="form-group">
+      <img *ngIf="preview || dressDetails.dressPhoto"
+           [src]="preview ?  preview : 'data:image/png;base64,'+ dressDetails.dressPhoto"
+           alt="Dress Preview"
+           class="rounded mx-auto d-block w-50 mb-3"/>
+      <input type="file" name="dressPhoto" (change)="handleFileChange($event)"/>
+    </div>
+
+    <div class="form-group">
+      <label>Dress Size</label>
+      <input
+        type="text"
+        name="size"
+        [(ngModel)]="dressDetails.dressSize"/>
+    </div>
+
+    <div class="form-group">
+      <label>Dress Price</label>
+      <input
+        type="text"
+        name="price"
+        [(ngModel)]="dressDetails.dressPrice"
+      />
+    </div>
+
+    <div class="form-group">
+      <label>Dress Description</label>
+      <textarea
+        name="description"
+        [(ngModel)]="dressDetails.dressDescription"
+      ></textarea>
+    </div>
+
+    <button class="update-button" (click)="handleUpdate()">Update Dress</button>
+    <button class="delete-button" (click)="handleDelete()">Delete Dress</button>
+  </div>
+</div>
+<div class="card flex justify-content-center gap-2">
+  <p-toast/>
+</div>

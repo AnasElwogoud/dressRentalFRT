@@ -1,0 +1,11 @@
+<div class="admin-page">
+  <h1 class="welcome-message">Welcome, {{ adminName }}</h1>
+  <div class="admin-actions">
+    <button class="admin-button" (click)="navigateTo('/admin/manage-dress')">
+      Manage Dresses
+    </button>
+    <button class="admin-button" (click)="navigateTo('/admin/manage-bookings')">
+      Manage Bookings
+    </button>
+  </div>
+</div>

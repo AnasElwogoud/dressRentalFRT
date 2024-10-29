@@ -11,7 +11,7 @@ import {ApiService} from "../../../service/api.service";
   styleUrl: './dress-search.component.scss'
 })
 export class DressSearchComponent implements OnInit {
-  @Output() handleSearchResult = new EventEmitter<any[]>();
+  // @Output() handleSearchResult = new EventEmitter<any[]>();
 
   startDate: Date | null = null;
   endDate: Date | null = null;
@@ -71,7 +71,7 @@ export class DressSearchComponent implements OnInit {
           if (response.dressList.length === 0) {
             this.showError('Dress not currently available for this date range on the selected dress size.');
           } else {
-            this.handleSearchResult.emit(response.dressList);
+            this.searchResult.emit(response.dressList);
             this.error = '';
           }
         }

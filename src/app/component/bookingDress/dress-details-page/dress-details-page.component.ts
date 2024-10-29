@@ -17,7 +17,6 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     ToastModule,
     ButtonModule,
     CommonModule,
-
   ],
   providers: [MessageService,],
   templateUrl: './dress-details-page.component.html',
@@ -112,7 +111,11 @@ export class DressDetailsPageComponent implements OnInit {
           this.confirmationCode = success.bookingConfirmationCode;
           this.showMessage = true;
 
-          this.messageService.add({severity: 'success', summary: 'Success', detail: `Booking successful! Confirmation code: ${this.confirmationCode}`});
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: `Booking successful! Confirmation code: ${this.confirmationCode}`
+          });
           setTimeout(() => {
             this.showMessage = false;
             this.router.navigate(['/dresses']);
@@ -120,6 +123,8 @@ export class DressDetailsPageComponent implements OnInit {
         }
       }, err => {
         this.errorMessage = err.error.message
+        if (this.errorMessage.includes('Error Saving a booking:'))
+          this.errorMessage = 'Error Saving a Booking: Date To must be in Future.'
         this.messageService.add({severity: 'error', summary: 'Error', detail: this.errorMessage});
 
         setTimeout(() => (this.errorMessage = ''), 5000);

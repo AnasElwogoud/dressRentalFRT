@@ -29,7 +29,7 @@ export class HeaderComponent {
     let isLogout = window.confirm('Are you sure you want to logout this user?');
     if (isLogout) {
       this.apiService.logout();
-      this.router.navigate(['/login']).then(r => console.log(r));
+      this.router.navigate(['/login']);
     }
   };
 }

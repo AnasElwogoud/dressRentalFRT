@@ -16,13 +16,13 @@ export class ApiService {
   }
 
   private getHeader(): HttpHeaders {
-    let token: string | null = localStorage.getItem('token');
+    let token: any = localStorage.getItem('token');
     if (token != null) {
       this.decodedToken = this.jwtDecodeService.decodeToken(token)
     }
     return new HttpHeaders({
       Authorization: `Bearer ${token}`,
-      'Content-Type': 'application/json'
+      // 'Content-Type': 'application/json'
     });
   }
 
@@ -58,8 +58,7 @@ export class ApiService {
 
   // dress
   addDress(formData: any): Observable<any> {
-    const headers = this.getHeader().set('Content-Type', 'multipart/form-data');
-    return this.http.post(`${this.BASE_URL}/dress/add`, formData, {headers});
+    return this.http.post(`${this.BASE_URL}/dress/add`, formData, {headers: this.getHeader()});
   }
 
   getAllAvailableDress(): Observable<any> {
@@ -88,8 +87,8 @@ export class ApiService {
   }
 
   updateDress(dressId: string, formData: any): Observable<any> {
-    const headers = this.getHeader().set('Content-Type', 'multipart/form-data');
-    return this.http.put(`${this.BASE_URL}/dress/update/${dressId}`, formData, {headers});
+    // const headers = this.getHeader().set('Content-Type', 'multipart/form-data');
+    return this.http.put(`${this.BASE_URL}/dress/update/${dressId}`, formData, {headers: this.getHeader()});
   }
 
   // BOOKINGS
@@ -125,16 +124,23 @@ export class ApiService {
   }
 
   isAdmin(): boolean {
-    if (typeof localStorage !== 'undefined') {
-      return localStorage.getItem('role') === 'ADMIN';
-    }
-    return false
+    if (typeof localStorage !== 'undefined' && localStorage.length > 0) {
+      let token: any = localStorage.getItem('token');
+      return this.jwtDecodeService.decodeToken(token).role == 'ADMIN';
+    } else
+      return false
+    // return this.decodedToken.role === 'ADMIN';
+    // if (typeof localStorage !== 'undefined') {
+    //   return localStorage.getItem('role') === 'USER';
+    // }
+    // return false;
   }
 
   isUser(): boolean {
-    if (typeof localStorage !== 'undefined') {
-      return localStorage.getItem('role') === 'USER';
-    }
-    return false;
+    if (typeof localStorage !== 'undefined' && localStorage.length > 0) {
+      let token: any = localStorage.getItem('token');
+      return this.jwtDecodeService.decodeToken(token).role == 'USER';
+    } else
+      return false
   }
 }
